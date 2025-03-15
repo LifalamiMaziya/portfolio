@@ -113,16 +113,22 @@ function handleScroll() {
  * Handle touch start for mobile interactions
  */
 function handleTouchStart(e) {
-  // Store touch position for detecting swipes/gestures
-  window.touchStartX = e.changedTouches[0].screenX;
-  window.touchStartY = e.changedTouches[0].screenY;
+  // Only track touch position for menu-related elements, not links or buttons
+  if (e.target.tagName !== 'A' && !e.target.closest('button') && !e.target.closest('form')) {
+    window.touchStartX = e.changedTouches[0].screenX;
+    window.touchStartY = e.changedTouches[0].screenY;
+  }
 }
 
 /**
  * Handle touch move for mobile interactions
  */
 function handleTouchMove(e) {
-  if (!window.touchStartX || !window.touchStartY) return;
+  // Only handle swipe gestures if we've started tracking a touch and not on interactive elements
+  if ((!window.touchStartX || !window.touchStartY) || 
+      e.target.tagName === 'A' || 
+      e.target.closest('button') || 
+      e.target.closest('form')) return;
   
   // Calculate distance moved
   const touchEndX = e.changedTouches[0].screenX;
@@ -136,15 +142,13 @@ function handleTouchMove(e) {
       // Swipe left - close mobile menu if open
       const mobileNav = document.querySelector('.nav-links.active');
       if (mobileNav) {
-        mobileNav.classList.remove('active');
-        document.querySelector('.mobile-menu-btn').classList.remove('active');
+        closeMobileMenu();
       }
     } else {
       // Swipe right - open mobile menu if closed
       const mobileNav = document.querySelector('.nav-links:not(.active)');
       if (mobileNav && window.innerWidth < 768) {
-        mobileNav.classList.add('active');
-        document.querySelector('.mobile-menu-btn').classList.add('active');
+        openMobileMenu();
       }
     }
   }
@@ -486,6 +490,7 @@ function initMobileMenu() {
   // Toggle menu when button is clicked
   mobileMenuBtn.addEventListener('click', function(e) {
     e.stopPropagation(); // Prevent event bubbling
+    e.preventDefault(); // Prevent default behavior
     toggleMobileMenu();
   });
   
@@ -493,19 +498,28 @@ function initMobileMenu() {
   if (overlay) {
     overlay.addEventListener('click', function(e) {
       e.stopPropagation(); // Prevent event bubbling
+      e.preventDefault(); // Prevent default behavior
       closeMobileMenu();
     });
   }
   
-  // Close menu when clicking navigation links
+  // Close menu when clicking navigation links - modified to ensure links work
   navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
+    link.addEventListener('click', function(e) {
+      // Don't prevent default or stop propagation to allow link navigation
+      closeMobileMenu();
+    });
   });
   
   // Add index to each list item for staggered animation
   navLinks.querySelectorAll('li').forEach((item, index) => {
     item.style.setProperty('--item-index', index);
   });
+  
+  // Make these functions global so they can be called from touch handlers
+  window.toggleMobileMenu = toggleMobileMenu;
+  window.openMobileMenu = openMobileMenu;
+  window.closeMobileMenu = closeMobileMenu;
   
   function toggleMobileMenu() {
     if (navLinks.classList.contains('active')) {
