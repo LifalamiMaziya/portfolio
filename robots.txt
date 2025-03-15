@@ -1,0 +1,11 @@
+# Allow all web crawlers to access the entire site
+User-agent: *
+Allow: /
+
+# Disallow access to specific folders
+Disallow: /design idea/
+Disallow: /.cursor/
+Disallow: /-p/
+
+# Sitemap location
+Sitemap: https://maziya.dev/sitemap.xml 
