@@ -18,22 +18,18 @@ setTimeout(function() {
 }, 1000);
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Fix for iOS and Android touch events
+  document.addEventListener('touchstart', function() {}, {passive: true});
+  
   // Initialize core functionality
   const initialize = () => {
     // Remove loading class once everything is initialized
     document.body.classList.remove('js-loading');
     
-    // Feature detection and progressive enhancement
-    const supportsBlobs = window.CSS && CSS.supports('filter', 'blur(30px)');
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    // Initialize components based on browser capability
-    if (supportsBlobs && !prefersReducedMotion) {
-      initBlobs();
-      initCustomCursor();
-    }
-    
-    // Always initialize these components
+    // Initialize components
+    addPassiveEventListeners();
+    initBlobs();
+    initCustomCursor();
     initNavigation();
     initScrollAnimations();
     initTypingEffect();
@@ -41,49 +37,53 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initializeLogoSwitch();
     initThemeToggle();
-    
-    // Add passive event listeners for better scroll performance
-    addPassiveEventListeners();
-    
-    // Initialize performance optimizations
     initLazyLoading();
     
-    console.log('Portfolio initialized successfully');
+    // Force theme check on page load
+    setTimeout(() => {
+      const darkTheme = document.body.classList.contains('dark-theme');
+      document.dispatchEvent(new CustomEvent('themeChange', { 
+        detail: { isDark: darkTheme } 
+      }));
+    }, 100);
   };
   
-  // Initialize with a small delay to ensure DOM is fully rendered
+  // Initialize after a small delay to ensure everything is loaded
   setTimeout(initialize, 100);
 });
 
 /**
- * Add passive event listeners for better scroll performance
+ * Add passive event listeners to improve performance on touch devices
  */
 function addPassiveEventListeners() {
-  const supportsPassive = (function() {
-    let passiveSupported = false;
-    try {
-      const options = {
-        get passive() {
-          passiveSupported = true;
-          return true;
-        }
-      };
-      window.addEventListener('test', null, options);
-      window.removeEventListener('test', null, options);
-    } catch(err) {
-      passiveSupported = false;
-    }
-    return passiveSupported;
-  })();
+  // Check if passive is supported
+  let passiveSupported = false;
+  try {
+    // Test via a getter in the options object to see if the passive property is accessed
+    const opts = Object.defineProperty({}, 'passive', {
+      get: function() {
+        passiveSupported = true;
+        return true;
+      }
+    });
+    window.addEventListener('testPassive', null, opts);
+    window.removeEventListener('testPassive', null, opts);
+  } catch (e) {}
+
+  // Add scroll event listener with passive option if supported
+  window.addEventListener('scroll', throttle(handleScroll, 100), 
+    passiveSupported ? { passive: true } : false
+  );
   
-  const passiveOption = supportsPassive ? { passive: true } : false;
-  
-  // Add event listeners with passive option
-  window.addEventListener('scroll', throttle(handleScroll, 100), passiveOption);
-  
-  // Touch events for mobile
-  document.addEventListener('touchstart', handleTouchStart, passiveOption);
-  document.addEventListener('touchmove', handleTouchMove, passiveOption);
+  // Add touch event listeners for mobile
+  if ('ontouchstart' in window) {
+    document.addEventListener('touchstart', handleTouchStart, 
+      passiveSupported ? { passive: true } : false
+    );
+    document.addEventListener('touchmove', handleTouchMove, 
+      passiveSupported ? { passive: true } : false
+    );
+  }
 }
 
 /**
@@ -487,27 +487,37 @@ function initMobileMenu() {
     overlay.style.display = 'none';
   }
   
-  // Toggle menu when button is clicked
-  mobileMenuBtn.addEventListener('click', function(e) {
+  // Fix for iOS hover states persisting after touch
+  document.addEventListener('touchend', function() {}, false);
+  
+  // Toggle menu when button is clicked - with both click and touch events
+  mobileMenuBtn.addEventListener('click', handleMenuToggle);
+  mobileMenuBtn.addEventListener('touchend', handleMenuToggle, { passive: false });
+  
+  function handleMenuToggle(e) {
     e.stopPropagation(); // Prevent event bubbling
     e.preventDefault(); // Prevent default behavior
     toggleMobileMenu();
-  });
+  }
   
-  // Close menu when clicking overlay
+  // Close menu when clicking overlay - with both click and touch events
   if (overlay) {
-    overlay.addEventListener('click', function(e) {
-      e.stopPropagation(); // Prevent event bubbling
-      e.preventDefault(); // Prevent default behavior
-      closeMobileMenu();
-    });
+    overlay.addEventListener('click', handleOverlayClick);
+    overlay.addEventListener('touchend', handleOverlayClick, { passive: false });
+  }
+  
+  function handleOverlayClick(e) {
+    e.stopPropagation(); // Prevent event bubbling
+    e.preventDefault(); // Prevent default behavior
+    closeMobileMenu();
   }
   
   // Close menu when clicking navigation links - modified to ensure links work
   navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      // Don't prevent default or stop propagation to allow link navigation
-      closeMobileMenu();
+    link.addEventListener('click', function() {
+      // Don't prevent default to allow link navigation
+      // Add small delay to ensure the link works
+      setTimeout(closeMobileMenu, 100);
     });
   });
   
@@ -535,8 +545,12 @@ function initMobileMenu() {
     mobileMenuBtn.classList.add('active');
     mobileMenuBtn.setAttribute('aria-expanded', 'true');
     
-    // Prevent body scrolling
+    // Prevent body scrolling - fixed iOS double tap issue
     body.style.overflow = 'hidden';
+    body.style.position = 'fixed';
+    body.style.width = '100%';
+    body.style.top = `-${window.scrollY}px`;
+    body.dataset.scrollY = window.scrollY;
     
     // Show overlay
     if (overlay) {
@@ -553,8 +567,13 @@ function initMobileMenu() {
     mobileMenuBtn.classList.remove('active');
     mobileMenuBtn.setAttribute('aria-expanded', 'false');
     
-    // Restore body scrolling
+    // Restore body scrolling - handle iOS correctly
+    const scrollY = parseInt(body.dataset.scrollY || '0');
+    body.style.position = '';
+    body.style.width = '';
+    body.style.top = '';
     body.style.overflow = '';
+    window.scrollTo(0, scrollY);
     
     // Hide overlay
     if (overlay) {
@@ -570,13 +589,6 @@ function initMobileMenu() {
   // Close menu when pressing escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-      closeMobileMenu();
-    }
-  });
-  
-  // Close menu when resizing to desktop
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
       closeMobileMenu();
     }
   });
