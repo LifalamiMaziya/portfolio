@@ -547,11 +547,16 @@
                     href="https://wa.me/27797696106?text=Hello%20Lifalami,%20I'm%20interested%20in%20your%20web%20development%20services"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="contact-link"
-                    style="touch-action: manipulation"
+                    class="contact-link whatsapp-link"
+                    style="
+                      touch-action: manipulation;
+                      -webkit-tap-highlight-color: transparent;
+                    "
+                    onclick="event.stopPropagation();"
+                    oncontextmenu="event.preventDefault();"
                   >
-                    <i class="fab fa-whatsapp" aria-hidden="true"></i> +27 79
-                    769 6106
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    <span>+27 79 769 6106</span>
                   </a>
                 </div>
               </div>
@@ -662,16 +667,50 @@
 
       // Ensure all links are properly clickable on mobile devices
       document.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener(
-          "touchend",
-          function (e) {
-            // Prevent multiple events
-            e.stopPropagation();
-            // Don't prevent default, let the link work normally
-          },
-          { passive: false }
-        );
+        // Make external links work better on mobile
+        if (
+          !link.getAttribute("href").startsWith("#") &&
+          !link.getAttribute("href").startsWith("mailto:")
+        ) {
+          link.addEventListener(
+            "touchend",
+            function (e) {
+              // For external links, stop propagation but allow default action
+              e.stopPropagation();
+
+              // For WhatsApp links specifically
+              if (link.classList.contains("whatsapp-link")) {
+                // Force open in new tab/app
+                const href = link.getAttribute("href");
+                setTimeout(function () {
+                  window.open(href, "_blank");
+                }, 100);
+              }
+            },
+            { passive: false }
+          );
+        }
+
+        // Add a small active state visual feedback
+        link.addEventListener("touchstart", function () {
+          this.classList.add("touch-active");
+        });
+
+        link.addEventListener("touchend", function () {
+          this.classList.remove("touch-active");
+        });
       });
+
+      // Special handling for Safari mobile
+      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        // Fix scroll position issue after closing modal on iOS
+        document.addEventListener("visibilitychange", function () {
+          if (!document.hidden) {
+            // Page is now visible again
+            window.scrollTo(0, window.scrollY);
+          }
+        });
+      }
     </script>
   </body>
 </html>

@@ -321,9 +321,10 @@ function initNavigation() {
   // Mobile menu toggle is now handled in initMobileMenu
   // Removed to prevent double initialization
   
-  // Smooth scroll for anchor links
+  // Smooth scroll for anchor links - Enhanced for mobile touch support
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    // Use separate handler function to ensure consistent behavior
+    const scrollToTarget = function(e) {
       e.preventDefault();
       
       const targetId = this.getAttribute('href');
@@ -332,17 +333,39 @@ function initNavigation() {
       const targetElement = document.querySelector(targetId);
       if (!targetElement) return;
       
-      // Close mobile menu if open
+      // Close mobile menu if open - but with a slight delay to ensure the link works
       if (navLinks && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+        // First scroll, then close menu to avoid touch event issues
+        window.scrollTo({
+          top: targetElement.offsetTop - 100, // Offset for header
+          behavior: 'smooth'
+        });
+        
+        // Close menu after scrolling has started
+        setTimeout(() => {
+          if (typeof window.closeMobileMenu === 'function') {
+            window.closeMobileMenu();
+          } else {
+            navLinks.classList.remove('active');
+            if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+          }
+        }, 50);
+      } else {
+        // Regular scrolling for desktop or when menu is already closed
+        window.scrollTo({
+          top: targetElement.offsetTop - 100, // Offset for header
+          behavior: 'smooth'
+        });
       }
-      
-      window.scrollTo({
-        top: targetElement.offsetTop - 100, // Offset for header
-        behavior: 'smooth'
-      });
-    });
+    };
+    
+    // Add both click and touch events
+    anchor.addEventListener('click', scrollToTarget);
+    anchor.addEventListener('touchend', function(e) {
+      // Prevent Safari double-tap zoom
+      e.preventDefault();
+      scrollToTarget.call(this, e);
+    }, { passive: false });
   });
 }
 
@@ -514,11 +537,22 @@ function initMobileMenu() {
   
   // Close menu when clicking navigation links - modified to ensure links work
   navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', function() {
-      // Don't prevent default to allow link navigation
-      // Add small delay to ensure the link works
-      setTimeout(closeMobileMenu, 100);
-    });
+    // We're NOT adding a click handler to nav links here
+    // That's handled separately in initNavigation() for smooth scrolling
+    
+    // For external links (not starting with #), add specific touch handling
+    if (!link.getAttribute('href').startsWith('#')) {
+      link.addEventListener('touchend', function(e) {
+        // Do not interfere with normal link behavior for external links
+        // Just schedule menu close with a delay after the navigation
+        setTimeout(closeMobileMenu, 100);
+      }, { passive: true });
+    }
+    
+    // Ensure links are properly accessible
+    link.setAttribute('tabindex', '0');
+    link.style.webkitTapHighlightColor = 'transparent';
+    link.style.touchAction = 'manipulation';
   });
   
   // Add index to each list item for staggered animation
