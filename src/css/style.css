@@ -17,14 +17,14 @@
 /* Custom properties */
 :root {
   /* Colors - Gray scale with subtle accents */
-  --color-background: #f5f5f5;
-  --color-surface: #ffffff;
+  --color-background: #e6e6e6;
+  --color-surface: #f0f0f0;
   --color-text-primary: #1a1a1a;
   --color-text-secondary: #4a4a4a;
   --color-text-tertiary: #999999;
   --color-accent: #3a3a3a;
   --color-accent-hover: #2a2a2a;
-  --color-border: #e0e0e0;
+  --color-border: #d0d0d0;
   
   /* Blob colors - Light theme with increased contrast */
   --blob-color-1: rgba(255, 50, 100, 1);
@@ -35,9 +35,9 @@
   --blob-blend-mode: screen;
   
   /* Glass effect - Reduced opacity for better blob visibility */
-  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg: rgba(230, 230, 230, 0.1);
   --glass-blur: 10px;
-  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-border: rgba(220, 220, 220, 0.2);
   
   /* Typography */
   --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -72,20 +72,20 @@
   --transition-medium: 0.3s ease;
   --transition-slow: 0.5s ease;
   
-  /* Z-index layers - Fixed to ensure blobs are visible */
-  --z-background: -20;
-  --z-blobs: -10;
-  --z-glass: -5;
+  /* Z-index layers - Fixed to ensure proper stacking */
+  --z-background: -10;
+  --z-blobs: -5;
+  --z-glass: -1;
   --z-content: 1;
-  --z-header: 10;
-  --z-cursor: 100;
-  --z-navigation: 15;
+  --z-header: 100;
+  --z-navigation: 150;
+  --z-cursor: 200;
 
   /* Updated to a more grayscale/muted color instead of blue */
   --primary-color: #3a3a3a;
   --secondary-color: #6c757d;
   --dark-color: #333;
-  --light-color: #f5f5f5;
+  --light-color: #e6e6e6;
   --success-color: #28a745;
   --error-color: #dc3545;
   --border-radius: 8px;
@@ -177,7 +177,7 @@ a:hover {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: -2;
+  z-index: var(--z-background);
   pointer-events: none;
 }
 
@@ -349,7 +349,7 @@ a:hover {
 /* Content container (above glass) */
 .content-container {
   position: relative;
-  z-index: var(--z-content);
+  z-index: 1; /* Updated to ensure it's above background elements but below navigation */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -385,10 +385,10 @@ a:hover {
   padding: var(--space-md);
   z-index: var(--z-header);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  background-color: rgba(245, 245, 245, 0.8); /* Added for better visibility */
+  background-color: rgba(245, 245, 245, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  height: var(--header-height); /* Fixed height for better spacing */
+  height: var(--header-height);
 }
 
 .header.scrolled {
@@ -404,7 +404,7 @@ a:hover {
   align-items: center;
   position: relative;
   width: 100%;
-  height: 60px; /* Fixed height for consistency */
+  height: 60px;
 }
 
 /* Logo Styles */
@@ -412,6 +412,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 0.1rem;
+  z-index: var(--z-navigation);
 }
 
 .logo-img {
@@ -971,8 +972,13 @@ body.dark-theme .theme-toggle .fa-moon {
 /* Desktop navigation - transparent background for both themes */
 @media (min-width: 769px) {
   .nav-links {
-    background-color: transparent !important; /* Force transparent background for desktop */
-    box-shadow: none !important; /* Remove shadow for desktop */
+    background-color: transparent !important;
+    box-shadow: none !important;
+    position: relative; /* Change from absolute to avoid positioning issues */
+    display: flex;
+    left: auto;
+    transform: none;
+    margin: 0 auto;
   }
 }
 
@@ -980,7 +986,7 @@ body.dark-theme .theme-toggle .fa-moon {
 @media (max-width: 768px) {
   .mobile-menu-btn {
     display: flex;
-    z-index: 1001; /* Make sure it's above the modal */
+    z-index: var(--z-navigation);
   }
   
   .nav-links {
@@ -992,20 +998,21 @@ body.dark-theme .theme-toggle .fa-moon {
     width: 250px;
     height: 100vh;
     padding: 120px 0 0;
-    z-index: 1000;
+    z-index: var(--z-navigation);
     align-items: center;
     justify-content: flex-start;
     gap: var(--space-xl);
-    transition: right 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
+    opacity: 0;
   }
   
   body:not(.dark-theme) .nav-links {
-    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent background for light theme mobile */
+    background-color: rgba(255, 255, 255, 0.95);
     box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
   }
   
   body.dark-theme .nav-links {
-    background-color: rgba(30, 30, 30, 0.95); /* Semi-transparent dark background for mobile */
+    background-color: rgba(30, 30, 30, 0.95);
     box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
   }
   
@@ -1020,6 +1027,7 @@ body.dark-theme .theme-toggle .fa-moon {
   
   .nav-links.active {
     right: 0;
+    opacity: 1;
   }
   
   .nav-links.active li {
@@ -1050,23 +1058,26 @@ body.dark-theme .theme-toggle .fa-moon {
   
   /* Mobile menu overlay */
   .mobile-menu-overlay {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transition: opacity 0.3s ease, visibility 0.3s ease, z-index 0s linear 0.3s;
+    z-index: var(--z-navigation);
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
   
   .mobile-menu-overlay.active {
-    z-index: 999;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transition: opacity 0.3s ease, visibility 0.3s ease, z-index 0s;
+    display: block;
+    opacity: 1;
+  }
+  
+  /* Make sure theme toggle is above the menu */
+  .theme-toggle {
+    z-index: var(--z-navigation);
   }
 }
 
