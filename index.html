@@ -528,10 +528,11 @@
                     lifalamimaziya@gmail.com
                   </a>
                   <a
-                    href="https://wa.me/27797696106"
+                    href="https://wa.me/27797696106?text=Hello%20Lifalami,%20I'm%20interested%20in%20your%20web%20development%20services"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="contact-link"
+                    style="touch-action: manipulation"
                   >
                     <i class="fab fa-whatsapp" aria-hidden="true"></i> +27 79
                     769 6106
@@ -633,6 +634,27 @@
             );
           }
         }
+      });
+    </script>
+
+    <!-- Mobile touch improvements -->
+    <script>
+      // Fix for iOS 300ms tap delay
+      document.addEventListener("touchstart", function () {}, {
+        passive: true,
+      });
+
+      // Ensure all links are properly clickable on mobile devices
+      document.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener(
+          "touchend",
+          function (e) {
+            // Prevent multiple events
+            e.stopPropagation();
+            // Don't prevent default, let the link work normally
+          },
+          { passive: false }
+        );
       });
     </script>
   </body>
