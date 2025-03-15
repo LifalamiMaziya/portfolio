@@ -4,72 +4,59 @@
   "description": "Web developer based in Mbombela, South Africa, creating exceptional web experiences for local businesses and global clients.",
   "start_url": "/?utm_source=pwa",
   "display": "standalone",
-  "background_color": "#f5f5f5",
-  "theme_color": "#4a6baf",
-  "orientation": "portrait-primary",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "orientation": "any",
   "categories": ["portfolio", "web development", "freelance"],
   "icons": [
     {
-      "src": "assets/favicon/android-chrome-192x192.png",
+      "src": "src/assets/images/black logo (wb).png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "assets/favicon/android-chrome-512x512.png",
-      "sizes": "512x512",
+      "src": "src/assets/images/White logo (bb).png",
+      "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ],
   "screenshots": [
     {
-      "src": "assets/pwa/screenshot1.png",
+      "src": "src/assets/images/optimized/screenshot.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Lifalami Maziya Portfolio Homepage"
+      "label": "Lifalami Maziya Portfolio"
     },
     {
-      "src": "assets/pwa/screenshot2.png",
-      "sizes": "750x1334",
+      "src": "src/assets/images/optimized/screenshot-mobile.png",
+      "sizes": "540x720",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Projects on Mobile"
+      "label": "Lifalami Maziya Portfolio - Mobile"
     }
   ],
+  "display_override": ["standalone", "browser", "minimal-ui"],
+  "prefer_related_applications": false,
+  "handle_links": "preferred",
   "shortcuts": [
     {
-      "name": "View Projects",
+      "name": "Projects",
       "url": "/#projects",
-      "description": "View my featured projects",
-      "icons": [
-        {
-          "src": "assets/favicon/projects-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+      "description": "View my latest projects"
     },
     {
-      "name": "Contact Me",
+      "name": "Contact",
       "url": "/#contact",
-      "description": "Get in touch with me",
-      "icons": [
-        {
-          "src": "assets/favicon/contact-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+      "description": "Get in touch with me"
     }
   ],
-  "related_applications": [],
-  "prefer_related_applications": false,
-  "iarc_rating_id": "",
+  "id": "/",
   "lang": "en",
   "dir": "ltr",
-  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "iarc_rating_id": "",
   "scope": "/",
-  "id": "maziya-portfolio"
+  "related_applications": []
 } 

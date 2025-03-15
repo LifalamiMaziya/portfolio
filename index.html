@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover"
+    />
     <meta
       name="description"
       content="Lifalami Maziya - Web developer based in Mbombela, South Africa, creating exceptional web experiences for local businesses and global clients."
@@ -24,13 +27,15 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@lifalamimaziya" />
 
-    <!-- Theme-aware Favicon -->
+    <!-- Theme-aware Favicon - Enhanced for cross-browser compatibility -->
+    <!-- Light theme favicon -->
     <link
       rel="icon"
       type="image/png"
       href="src/assets/images/black logo (wb).png"
       media="(prefers-color-scheme: light)"
     />
+    <!-- Dark theme favicon -->
     <link
       rel="icon"
       type="image/png"
@@ -43,7 +48,18 @@
       type="image/png"
       href="src/assets/images/black logo (wb).png"
     />
+    <!-- iOS specific icons -->
     <link rel="apple-touch-icon" href="src/assets/images/black logo (wb).png" />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="src/assets/images/black logo (wb).png"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <!-- Web app manifest -->
     <link rel="manifest" href="site.webmanifest" />
 
     <!-- Performance optimizations -->
