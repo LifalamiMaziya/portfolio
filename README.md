@@ -1,3 +1,5 @@
+# My Portfolio Website
+
 # Lifalami Maziya | Web Developer Portfolio
 
 A modern, brutalist-inspired portfolio website that showcases my work and skills as a web developer.
@@ -100,4 +102,4 @@ Feel free to reach out to me at:
 ---
 
 © 2024 Lifalami Maziya | All Rights Reserved
-"# Web-portfolio" 
+"# Web-portfolio"
