@@ -1,0 +1,62 @@
+{
+  "name": "Lifalami Maziya | Web Developer",
+  "short_name": "Maziya.dev",
+  "description": "Web developer based in Mbombela, South Africa, creating exceptional web experiences for local businesses and global clients.",
+  "start_url": "/?utm_source=pwa",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "orientation": "any",
+  "categories": ["portfolio", "web development", "freelance"],
+  "icons": [
+    {
+      "src": "src/assets/images/black logo (wb).png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "src/assets/images/White logo (bb).png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "src/assets/images/optimized/screenshot.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Lifalami Maziya Portfolio"
+    },
+    {
+      "src": "src/assets/images/optimized/screenshot-mobile.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Lifalami Maziya Portfolio - Mobile"
+    }
+  ],
+  "display_override": ["standalone", "browser", "minimal-ui"],
+  "prefer_related_applications": false,
+  "handle_links": "preferred",
+  "shortcuts": [
+    {
+      "name": "Projects",
+      "url": "/#projects",
+      "description": "View my latest projects"
+    },
+    {
+      "name": "Contact",
+      "url": "/#contact",
+      "description": "Get in touch with me"
+    }
+  ],
+  "id": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "iarc_rating_id": "",
+  "scope": "/",
+  "related_applications": []
+} 
