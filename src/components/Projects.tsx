@@ -1,33 +1,37 @@
 
 import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const projects = [
   {
     id: 1,
+    slug: "mpumalanga-tourism",
     title: "Mpumalanga Tourism Portal",
     description: "A comprehensive tourism portal showcasing Mpumalanga's attractions, activities, and accommodation options. Features interactive maps and booking integrations.",
     image: "/lovable-uploads/299dacbe-b255-4d0c-bb44-28f67d37df70.png",
     technologies: ["React", "Node.js", "MongoDB", "Mapbox API"],
-    demoLink: "#",
-    codeLink: "#"
+    demoLink: "https://example.com/mpumalanga-demo",
+    codeLink: "https://github.com/maziya/mpumalanga-tourism"
   },
   {
     id: 2,
+    slug: "agriconnect",
     title: "AgriConnect Platform",
     description: "A digital marketplace connecting farmers with buyers, featuring inventory management, real-time market prices, and logistics tracking.",
     image: "/lovable-uploads/41274f22-c22c-466c-942d-d9f7e3395c02.png",
     technologies: ["Vue.js", "Express", "PostgreSQL", "Chart.js"],
-    demoLink: "#",
-    codeLink: "#"
+    demoLink: "https://example.com/agriconnect-demo",
+    codeLink: "https://github.com/maziya/agriconnect"
   },
   {
     id: 3,
+    slug: "ndebele-medical",
     title: "Ndebele Medical Center",
     description: "A comprehensive healthcare management system for a medical facility, featuring appointment scheduling, patient records, and telehealth capabilities.",
     image: "/lovable-uploads/aabeb587-a95a-4a26-bef2-25ad93622b5c.png",
     technologies: ["React", "Firebase", "Tailwind CSS", "Stripe API"],
-    demoLink: "#",
-    codeLink: "#"
+    demoLink: "https://example.com/ndebele-demo",
+    codeLink: "https://github.com/maziya/ndebele-medical"
   }
 ];
 
@@ -65,15 +69,17 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
       }`}
       style={{ transitionDelay: `${index * 0.1}s` }}
     >
-      <div className="h-64 overflow-hidden">
+      <Link to={`/project/${project.slug}`} className="h-64 overflow-hidden block">
         <img 
           src={project.image} 
           alt={project.title} 
           className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
         />
-      </div>
+      </Link>
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+        <Link to={`/project/${project.slug}`}>
+          <h3 className="text-xl font-semibold mb-2 hover:text-primary transition-colors">{project.title}</h3>
+        </Link>
         <p className="text-foreground/70 mb-4">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-6">
           {project.technologies.map((tech, idx) => (
@@ -88,16 +94,26 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
         <div className="flex gap-4">
           <a 
             href={project.demoLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
             className="px-4 py-2 bg-primary text-white rounded-md text-sm transition-all hover:bg-primary/90"
           >
-            View Project
+            View Demo
           </a>
           <a 
             href={project.codeLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
             className="px-4 py-2 border border-primary text-primary rounded-md text-sm transition-all hover:bg-primary/10"
           >
             Source Code
           </a>
+          <Link 
+            to={`/project/${project.slug}`}
+            className="px-4 py-2 border border-primary text-primary rounded-md text-sm transition-all hover:bg-primary/10 ml-auto"
+          >
+            Details
+          </Link>
         </div>
       </div>
     </div>
