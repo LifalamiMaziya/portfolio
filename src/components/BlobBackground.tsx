@@ -1,10 +1,12 @@
-import { useEffect, useState, useRef } from "react";
+
+import { useEffect, useState, useRef, memo } from "react";
 
 const BlobBackground = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const requestRef = useRef<number>();
   const previousTimeRef = useRef<number>();
   const mousePosRef = useRef({ x: 0, y: 0 });
+  const throttleTimeRef = useRef(100); // Throttle rate in ms
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -16,9 +18,14 @@ const BlobBackground = () => {
 
     const animate = (time: number) => {
       if (previousTimeRef.current !== undefined) {
-        if (time - previousTimeRef.current > 100) {
+        const deltaTime = time - previousTimeRef.current;
+        if (deltaTime > throttleTimeRef.current) {
           setMousePosition(mousePosRef.current);
           previousTimeRef.current = time;
+          
+          // Dynamically adjust throttle rate based on performance
+          const fps = 1000 / deltaTime;
+          throttleTimeRef.current = fps < 30 ? 150 : 100; // Increase throttle if FPS drops
         }
       } else {
         previousTimeRef.current = time;
@@ -26,7 +33,8 @@ const BlobBackground = () => {
       requestRef.current = requestAnimationFrame(animate);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    // Passive event listener for better scroll performance
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     requestRef.current = requestAnimationFrame(animate);
     
     return () => {
@@ -40,7 +48,7 @@ const BlobBackground = () => {
   return (
     <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
       <div 
-        className="absolute top-[-10%] left-[-10%] w-[900px] h-[900px] rounded-[40%_60%_70%_30%/40%_50%_60%_50%] mix-blend-screen opacity-80 animate-blob-1 will-change-transform"
+        className="absolute top-[-10%] left-[-10%] w-[900px] h-[900px] rounded-[40%_60%_70%_30%/40%_50%_60%_50%] mix-blend-screen opacity-80 will-change-transform"
         style={{
           background: `linear-gradient(45deg, hsl(var(--blob-color-1)) 0%, hsl(var(--blob-color-2)) 100%)`,
           filter: 'blur(50px) saturate(150%)',
@@ -48,7 +56,7 @@ const BlobBackground = () => {
         }}
       />
       <div 
-        className="absolute top-[0%] right-[-10%] w-[850px] h-[850px] rounded-[60%_40%_30%_70%/60%_30%_70%_40%] mix-blend-screen opacity-80 animate-blob-2 will-change-transform"
+        className="absolute top-[0%] right-[-10%] w-[850px] h-[850px] rounded-[60%_40%_30%_70%/60%_30%_70%_40%] mix-blend-screen opacity-80 will-change-transform"
         style={{
           background: `linear-gradient(135deg, hsl(var(--blob-color-2)) 0%, hsl(var(--blob-color-3)) 100%)`,
           filter: 'blur(50px) saturate(150%)',
@@ -57,7 +65,7 @@ const BlobBackground = () => {
         }}
       />
       <div 
-        className="absolute bottom-[0%] left-[-5%] w-[800px] h-[800px] rounded-[40%_60%_60%_40%/70%_30%_50%_60%] mix-blend-screen opacity-80 animate-blob-3 will-change-transform"
+        className="absolute bottom-[0%] left-[-5%] w-[800px] h-[800px] rounded-[40%_60%_60%_40%/70%_30%_50%_60%] mix-blend-screen opacity-80 will-change-transform"
         style={{
           background: `linear-gradient(225deg, hsl(var(--blob-color-3)) 0%, hsl(var(--blob-color-4)) 100%)`,
           filter: 'blur(50px) saturate(150%)',
@@ -66,7 +74,7 @@ const BlobBackground = () => {
         }}
       />
       <div 
-        className="absolute bottom-[-10%] right-[-5%] w-[750px] h-[750px] rounded-[60%_40%_40%_60%/40%_60%_40%_60%] mix-blend-screen opacity-80 animate-blob-4 will-change-transform"
+        className="absolute bottom-[-10%] right-[-5%] w-[750px] h-[750px] rounded-[60%_40%_40%_60%/40%_60%_40%_60%] mix-blend-screen opacity-80 will-change-transform"
         style={{
           background: `linear-gradient(315deg, hsl(var(--blob-color-4)) 0%, hsl(var(--blob-color-1)) 100%)`,
           filter: 'blur(50px) saturate(150%)',
@@ -79,4 +87,5 @@ const BlobBackground = () => {
   );
 };
 
-export default BlobBackground;
+// Memoize component to prevent unnecessary re-renders
+export default memo(BlobBackground);

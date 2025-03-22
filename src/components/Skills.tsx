@@ -1,5 +1,6 @@
 
-import { useRef, useEffect, useState } from "react";
+import { memo } from "react";
+import ScrollObserver from "./ScrollObserver";
 
 type SkillCategory = {
   title: string;
@@ -53,102 +54,44 @@ const skillCategories: SkillCategory[] = [
   }
 ];
 
-const SkillCard = ({ category, index }: { category: SkillCategory, index: number }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
-    };
-  }, []);
-
+const SkillCard = memo(({ category, index }: { category: SkillCategory, index: number }) => {
   return (
-    <div 
-      ref={cardRef}
-      className={`bg-card rounded-xl p-6 shadow-md transition-all duration-500 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
-      style={{ transitionDelay: `${index * 0.1}s` }}
-    >
-      <h3 className="text-xl font-semibold mb-4 pb-2 border-b border-border relative">
-        {category.title}
-        <span className="absolute bottom-[-1px] left-0 w-16 h-[2px] bg-primary"></span>
-      </h3>
-      <ul className="space-y-2">
-        {category.skills.map((skill, idx) => (
-          <li key={idx} className="flex items-start">
-            <span className="inline-block w-2 h-2 mt-[0.45rem] mr-2 bg-primary rounded-full"></span>
-            <span className="text-foreground/80">{skill}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ScrollObserver delayMs={index * 100} animateFrom={index % 2 === 0 ? "left" : "right"}>
+      <div className="bg-card rounded-xl p-6 shadow-md">
+        <h3 className="text-xl font-semibold mb-4 pb-2 border-b border-border relative">
+          {category.title}
+          <span className="absolute bottom-[-1px] left-0 w-16 h-[2px] bg-primary"></span>
+        </h3>
+        <ul className="space-y-2">
+          {category.skills.map((skill, idx) => (
+            <li key={idx} className="flex items-start">
+              <span className="inline-block w-2 h-2 mt-[0.45rem] mr-2 bg-primary rounded-full"></span>
+              <span className="text-foreground/80">{skill}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </ScrollObserver>
   );
-};
+});
 
 const Skills = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <section id="skills" className="section-padding bg-secondary/50" ref={sectionRef}>
+    <section id="skills" className="section-padding bg-secondary/50">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className={`inline-block px-4 py-1.5 mb-4 rounded-full bg-primary/10 text-primary text-sm font-medium transition-all duration-500 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
-          }`}>
-            My Expertise
+        <ScrollObserver>
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-1.5 mb-4 rounded-full bg-primary/10 text-primary text-sm font-medium">
+              My Expertise
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Skills & Expertise
+            </h2>
+            <p className="text-foreground/70 max-w-2xl mx-auto">
+              A versatile skill set that enables me to deliver exceptional digital solutions across the full development stack.
+            </p>
           </div>
-          <h2 className={`text-3xl md:text-4xl font-bold mb-6 transition-all duration-500 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
-          }`} style={{ transitionDelay: "0.1s" }}>
-            Skills & Expertise
-          </h2>
-          <p className={`text-foreground/70 max-w-2xl mx-auto transition-all duration-500 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
-          }`} style={{ transitionDelay: "0.2s" }}>
-            A versatile skill set that enables me to deliver exceptional digital solutions across the full development stack.
-          </p>
-        </div>
+        </ScrollObserver>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {skillCategories.map((category, idx) => (
             <SkillCard key={idx} category={category} index={idx} />
@@ -159,4 +102,4 @@ const Skills = () => {
   );
 };
 
-export default Skills;
+export default memo(Skills);
