@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import Logo from "./Logo";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,28 +48,32 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button 
-            className="flex flex-col justify-between w-7 h-5 md:hidden focus:outline-none z-50"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            <span 
-              className={`w-full h-0.5 bg-foreground transition-all duration-300 ${
-                isMenuOpen ? "transform rotate-45 translate-y-2" : ""
-              }`}
-            />
-            <span 
-              className={`w-full h-0.5 bg-foreground transition-opacity duration-300 ${
-                isMenuOpen ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span 
-              className={`w-full h-0.5 bg-foreground transition-all duration-300 ${
-                isMenuOpen ? "transform -rotate-45 -translate-y-2" : ""
-              }`}
-            />
-          </button>
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            
+            {/* Mobile Menu Button */}
+            <button 
+              className="flex flex-col justify-between w-7 h-5 md:hidden focus:outline-none z-50"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+            >
+              <span 
+                className={`w-full h-0.5 bg-foreground transition-all duration-300 ${
+                  isMenuOpen ? "transform rotate-45 translate-y-2" : ""
+                }`}
+              />
+              <span 
+                className={`w-full h-0.5 bg-foreground transition-opacity duration-300 ${
+                  isMenuOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span 
+                className={`w-full h-0.5 bg-foreground transition-all duration-300 ${
+                  isMenuOpen ? "transform -rotate-45 -translate-y-2" : ""
+                }`}
+              />
+            </button>
+          </div>
 
           {/* Mobile Menu */}
           <div 
