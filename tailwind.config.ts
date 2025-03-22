@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'sans-serif'],
+				rajdhani: ['Rajdhani', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -70,25 +75,108 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'fade-out': {
+					'0%': { opacity: '1', transform: 'translateY(0)' },
+					'100%': { opacity: '0', transform: 'translateY(10px)' }
+				},
+				'scale-in': {
+					'0%': { transform: 'scale(0.95)', opacity: '0' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
+				},
+				'blob-move-1': {
+					'0%': {
+						transform: 'translate(0, 0) scale(1) rotate(0deg)',
+						borderRadius: '40% 60% 70% 30% / 40% 50% 60% 50%'
 					},
-					to: {
-						height: '0'
+					'33%': {
+						transform: 'translate(2%, 2%) scale(1.05) rotate(10deg)',
+						borderRadius: '50% 40% 30% 60% / 60% 30% 70% 40%'
+					},
+					'66%': {
+						transform: 'translate(1%, 1%) scale(0.95) rotate(20deg)',
+						borderRadius: '30% 60% 50% 40% / 40% 60% 30% 70%'
+					},
+					'100%': {
+						transform: 'translate(0%, 0%) scale(1) rotate(0deg)',
+						borderRadius: '40% 60% 70% 30% / 40% 50% 60% 50%'
+					}
+				},
+				'blob-move-2': {
+					'0%': {
+						transform: 'translate(0, 0) scale(1) rotate(0deg)',
+						borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%'
+					},
+					'33%': {
+						transform: 'translate(-2%, 1%) scale(1.05) rotate(-10deg)',
+						borderRadius: '40% 60% 70% 30% / 30% 70% 40% 60%'
+					},
+					'66%': {
+						transform: 'translate(-1%, 2%) scale(0.95) rotate(-20deg)',
+						borderRadius: '70% 30% 40% 60% / 50% 40% 60% 50%'
+					},
+					'100%': {
+						transform: 'translate(0%, 0%) scale(1) rotate(0deg)',
+						borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%'
+					}
+				},
+				'blob-move-3': {
+					'0%': {
+						transform: 'translate(0, 0) scale(1) rotate(0deg)',
+						borderRadius: '40% 60% 60% 40% / 70% 30% 50% 60%'
+					},
+					'33%': {
+						transform: 'translate(2%, -1%) scale(0.95) rotate(15deg)',
+						borderRadius: '60% 40% 30% 70% / 40% 60% 70% 30%'
+					},
+					'66%': {
+						transform: 'translate(1%, -2%) scale(1.05) rotate(30deg)',
+						borderRadius: '30% 70% 60% 40% / 60% 40% 50% 70%'
+					},
+					'100%': {
+						transform: 'translate(0%, 0%) scale(1) rotate(0deg)',
+						borderRadius: '40% 60% 60% 40% / 70% 30% 50% 60%'
+					}
+				},
+				'blob-move-4': {
+					'0%': {
+						transform: 'translate(0, 0) scale(1) rotate(0deg)',
+						borderRadius: '60% 40% 40% 60% / 40% 60% 40% 60%'
+					},
+					'33%': {
+						transform: 'translate(-1%, -2%) scale(1.05) rotate(-15deg)',
+						borderRadius: '40% 60% 70% 30% / 70% 30% 40% 60%'
+					},
+					'66%': {
+						transform: 'translate(-2%, -1%) scale(0.95) rotate(-30deg)',
+						borderRadius: '70% 30% 40% 60% / 30% 70% 60% 40%'
+					},
+					'100%': {
+						transform: 'translate(0%, 0%) scale(1) rotate(0deg)',
+						borderRadius: '60% 40% 40% 60% / 40% 60% 40% 60%'
 					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.5s ease-out forwards',
+				'fade-out': 'fade-out 0.3s ease-out',
+				'scale-in': 'scale-in 0.3s ease-out',
+				'blob-1': 'blob-move-1 25s ease-in-out infinite alternate',
+				'blob-2': 'blob-move-2 28s ease-in-out infinite alternate',
+				'blob-3': 'blob-move-3 26s ease-in-out infinite alternate',
+				'blob-4': 'blob-move-4 24s ease-in-out infinite alternate',
 			}
 		}
 	},
