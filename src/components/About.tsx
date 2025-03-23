@@ -53,7 +53,7 @@ const About = () => {
           }`} style={{ transitionDelay: "0.3s" }}>
             <div className="aspect-square rounded-2xl overflow-hidden bg-primary/10 relative">
               <img 
-                src="/assets/images/profile.jpg" 
+                src="/assets/images/profile.png" 
                 alt="Lifalami Maziya" 
                 className="w-full h-full object-cover"
                 onError={(e) => {

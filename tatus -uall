@@ -1,0 +1,13 @@
+[1mdiff --git a/src/components/About.tsx b/src/components/About.tsx[m
+[1mindex 5d99a87..d2f6a3a 100644[m
+[1m--- a/src/components/About.tsx[m
+[1m+++ b/src/components/About.tsx[m
+[36m@@ -53,7 +53,7 @@[m [mconst About = () => {[m
+           }`} style={{ transitionDelay: "0.3s" }}>[m
+             <div className="aspect-square rounded-2xl overflow-hidden bg-primary/10 relative">[m
+               <img [m
+[31m-                src="/assets/images/profile.jpg" [m
+[32m+[m[32m                src="/assets/images/profile.png"[m[41m [m
+                 alt="Lifalami Maziya" [m
+                 className="w-full h-full object-cover"[m
+                 onError={(e) => {[m
