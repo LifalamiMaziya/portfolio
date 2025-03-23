@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { toast } from "sonner";
 
@@ -91,7 +90,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-medium mb-1">Phone</h4>
-                  <p className="text-foreground/70">+27 (0) 71 234 5678</p>
+                  <p className="text-foreground/70">+27 79 769 6106</p>
                 </div>
               </div>
               
@@ -104,7 +103,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-medium mb-1">Email</h4>
-                  <p className="text-foreground/70">lifalami@maziya.dev</p>
+                  <p className="text-foreground/70">lifalamimaziya@gmail.com</p>
                 </div>
               </div>
               
@@ -125,24 +124,28 @@ const Contact = () => {
             <div className="mt-8">
               <h4 className="text-lg font-medium mb-4">Connect with me</h4>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary transition-colors hover:bg-primary hover:text-white">
+                <a href="https://facebook.com/lifalami.maziya" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary transition-colors hover:bg-primary hover:text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                   </svg>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary transition-colors hover:bg-primary hover:text-white">
+                <a href="https://linkedin.com/in/lifalami-maziya" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary transition-colors hover:bg-primary hover:text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                     <rect x="2" y="9" width="4" height="12"></rect>
                     <circle cx="4" cy="4" r="2"></circle>
                   </svg>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary transition-colors hover:bg-primary hover:text-white">
+                <a href="https://wa.me/27797696106?text=Hello%20Lifalami,%20I'm%20interested%20in%20your%20web%20development%20services" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary transition-colors hover:bg-primary hover:text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                    <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path>
+                    <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Zm0 0a5 5 0 0 0 5 5m0 0a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1h1Z"></path>
                   </svg>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary transition-colors hover:bg-primary hover:text-white">
+                <a href="https://instagram.com/lifalami.maziya" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary transition-colors hover:bg-primary hover:text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -218,12 +221,12 @@ const Contact = () => {
                 
                 <button 
                   type="submit" 
-                  className="w-full px-6 py-3 bg-primary text-white rounded-md transition-all hover:bg-primary/90 hover:shadow-lg flex items-center justify-center"
+                  className="w-full px-6 py-3 bg-primary text-white dark:bg-secondary dark:text-secondary-foreground rounded-md transition-all hover:bg-primary/90 dark:hover:bg-secondary/80 hover:shadow-lg flex items-center justify-center"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
                     <>
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white dark:text-secondary-foreground" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>

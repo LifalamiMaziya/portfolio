@@ -1,4 +1,3 @@
-
 import { memo } from "react";
 import { Link } from "react-router-dom";
 import ScrollObserver from "./ScrollObserver";
@@ -9,30 +8,30 @@ const projects = [
     slug: "mpumalanga-tourism",
     title: "Mpumalanga Tourism Portal",
     description: "A comprehensive tourism portal showcasing Mpumalanga's attractions, activities, and accommodation options. Features interactive maps and booking integrations.",
-    image: "/lovable-uploads/299dacbe-b255-4d0c-bb44-28f67d37df70.png",
+    image: "/assets/images/projects/mpumalanga-tourism.png",
     technologies: ["React", "Node.js", "MongoDB", "Mapbox API"],
-    demoLink: "https://example.com/mpumalanga-demo",
-    codeLink: "https://github.com/maziya/mpumalanga-tourism"
+    demoLink: "/projects/mpumalanga-tourism/index.html",
+    codeLink: "https://github.com/LifalamiMaziya/mpumalanga-tourism"
   },
   {
     id: 2,
-    slug: "agriconnect",
+    slug: "agri-connect",
     title: "AgriConnect Platform",
-    description: "A digital marketplace connecting farmers with buyers, featuring inventory management, real-time market prices, and logistics tracking.",
-    image: "/lovable-uploads/41274f22-c22c-466c-942d-d9f7e3395c02.png",
+    description: "A digital marketplace connecting farmers with buyers in Mpumalanga, featuring inventory management, real-time market prices, and logistics tracking.",
+    image: "/assets/images/projects/agri-connect.png",
     technologies: ["Vue.js", "Express", "PostgreSQL", "Chart.js"],
-    demoLink: "https://example.com/agriconnect-demo",
-    codeLink: "https://github.com/maziya/agriconnect"
+    demoLink: "/projects/agri-connect/index.html",
+    codeLink: "https://github.com/LifalamiMaziya/agri-connect"
   },
   {
     id: 3,
-    slug: "ndebele-medical",
-    title: "Ndebele Medical Center",
-    description: "A comprehensive healthcare management system for a medical facility, featuring appointment scheduling, patient records, and telehealth capabilities.",
-    image: "/lovable-uploads/aabeb587-a95a-4a26-bef2-25ad93622b5c.png",
+    slug: "nelspruit-medical",
+    title: "Nelspruit Medical Center",
+    description: "A comprehensive healthcare management system for a local medical facility, featuring appointment scheduling, patient records, and telehealth capabilities.",
+    image: "/assets/images/projects/nelspruit-medical.png",
     technologies: ["React", "Firebase", "Tailwind CSS", "Stripe API"],
-    demoLink: "https://example.com/ndebele-demo",
-    codeLink: "https://github.com/maziya/ndebele-medical"
+    demoLink: "/projects/nelspruit-medical/index.html",
+    codeLink: "https://github.com/LifalamiMaziya/nelspruit-medical"
   }
 ];
 
@@ -72,21 +71,19 @@ const ProjectCard = memo(({ project, index }: { project: typeof projects[0], ind
               href={project.demoLink} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-primary text-white rounded-md text-sm transition-all hover:bg-primary/90"
+              className="px-4 py-2 bg-primary text-white dark:bg-secondary dark:text-secondary-foreground rounded-md text-sm transition-all hover:bg-primary/90 dark:hover:bg-secondary/80"
             >
               View Demo
             </a>
-            <a 
-              href={project.codeLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="px-4 py-2 border border-primary text-primary rounded-md text-sm transition-all hover:bg-primary/10"
+            <Link 
+              to={`/source-code/${project.slug}`}
+              className="px-4 py-2 border border-primary text-primary dark:border-secondary dark:text-secondary-foreground rounded-md text-sm transition-all hover:bg-primary/10 dark:hover:bg-secondary/10"
             >
               Source Code
-            </a>
+            </Link>
             <Link 
-              to={`/project/${project.slug}`}
-              className="px-4 py-2 border border-primary text-primary rounded-md text-sm transition-all hover:bg-primary/10 ml-auto"
+              to={`/project/${project.slug}`} 
+              className="px-4 py-2 bg-primary text-white dark:bg-secondary dark:text-secondary-foreground rounded-md text-sm transition-all hover:bg-primary/90 dark:hover:bg-secondary/80"
             >
               Details
             </Link>

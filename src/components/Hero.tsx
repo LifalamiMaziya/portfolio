@@ -67,10 +67,10 @@ const Hero = () => {
             <div className="flex flex-wrap gap-4 animate-fade-in" style={{
               animationDelay: "0.4s"
             }}>
-              <a href="#projects" className="px-6 py-3 bg-primary text-white rounded-md transition-all hover:translate-y-[-3px] hover:shadow-lg">
+              <a href="#projects" className="px-6 py-3 bg-primary text-white dark:bg-secondary dark:text-secondary-foreground rounded-md transition-all hover:translate-y-[-3px] hover:shadow-lg dark:hover:bg-secondary/80">
                 View My Work
               </a>
-              <a href="#contact" className="px-6 py-3 border-2 border-primary text-primary rounded-md transition-all hover:bg-primary hover:text-white hover:translate-y-[-3px] hover:shadow-lg">
+              <a href="#contact" className="px-6 py-3 border-2 border-primary text-primary dark:border-secondary dark:text-secondary-foreground rounded-md transition-all hover:bg-primary hover:text-white dark:hover:bg-secondary dark:hover:text-secondary-foreground hover:translate-y-[-3px] hover:shadow-lg">
                 Contact Me
               </a>
             </div>
@@ -81,7 +81,7 @@ const Hero = () => {
             <div className="relative w-80 h-80">
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-transparent animate-pulse"></div>
               <img 
-                src="/lovable-uploads/1d840d5d-31eb-418c-8d58-ff2472547c34.png" 
+                src="/assets/images/profile.png" 
                 alt="Lifalami Maziya" 
                 className="relative w-full h-full object-cover rounded-full shadow-xl border-4 border-white/20 backdrop-blur-sm transition-transform duration-500 hover:scale-105"
                 loading="eager"

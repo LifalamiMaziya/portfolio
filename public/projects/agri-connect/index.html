@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgriConnect | Connecting Farmers and Buyers</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="logo">
+          <div
+            class="logo-placeholder"
+            style="
+              width: 40px;
+              height: 40px;
+              background-color: #4caf50;
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+            "
+          >
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h1>AgriConnect</h1>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="active">
+              <a href="#">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-store"></i>
+                <span>Marketplace</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-warehouse"></i>
+                <span>Inventory</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-truck"></i>
+                <span>Orders</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-chart-line"></i>
+                <span>Analytics</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-cloud-sun-rain"></i>
+                <span>Weather</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-users"></i>
+                <span>Community</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="user-profile">
+          <div class="user-avatar">
+            <div
+              style="
+                width: 100%;
+                height: 100%;
+                background-color: #e0e0e0;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #666;
+              "
+            >
+              <i class="fas fa-user"></i>
+            </div>
+            <span class="status-indicator online"></span>
+          </div>
+          <div class="user-info">
+            <h3>Sipho Nkosi</h3>
+            <p>Citrus Farmer</p>
+          </div>
+          <a href="#" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <!-- Top Navigation Bar -->
+        <header class="top-navbar">
+          <button class="menu-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              placeholder="Search for products, buyers, or farmers..."
+            />
+          </div>
+          <div class="navbar-actions">
+            <a href="#" class="navbar-icon">
+              <i class="far fa-bell"></i>
+              <span class="badge">5</span>
+            </a>
+            <a href="#" class="navbar-icon">
+              <i class="far fa-envelope"></i>
+              <span class="badge">3</span>
+            </a>
+            <a href="#" class="add-product-btn">
+              <i class="fas fa-plus"></i>
+              Add Product
+            </a>
+          </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard">
+          <div class="welcome-banner">
+            <div class="welcome-text">
+              <h1>Welcome back, Sipho!</h1>
+              <p>Here's what's happening with your farm today.</p>
+            </div>
+            <div class="weather-widget">
+              <div class="weather-icon">
+                <i class="fas fa-sun"></i>
+              </div>
+              <div class="weather-info">
+                <span class="temp">28°C</span>
+                <span class="location">Nelspruit</span>
+              </div>
+              <div class="weather-forecast">
+                <div class="forecast-day">
+                  <span class="day">Tue</span>
+                  <i class="fas fa-cloud-sun"></i>
+                  <span class="forecast-temp">26°</span>
+                </div>
+                <div class="forecast-day">
+                  <span class="day">Wed</span>
+                  <i class="fas fa-cloud-rain"></i>
+                  <span class="forecast-temp">24°</span>
+                </div>
+                <div class="forecast-day">
+                  <span class="day">Thu</span>
+                  <i class="fas fa-sun"></i>
+                  <span class="forecast-temp">29°</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Cards -->
+          <div class="stats-cards">
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <p class="stat-card-title">Sales This Month</p>
+                <h2 class="stat-card-value">R24,590</h2>
+                <p class="stat-card-change positive">
+                  <i class="fas fa-arrow-up"></i> 28% from last month
+                </p>
+              </div>
+              <div class="stat-card-icon green">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <p class="stat-card-title">Active Orders</p>
+                <h2 class="stat-card-value">12</h2>
+                <p class="stat-card-change neutral">
+                  <i class="fas fa-equals"></i> Same as last week
+                </p>
+              </div>
+              <div class="stat-card-icon orange">
+                <i class="fas fa-shopping-basket"></i>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <p class="stat-card-title">Inventory Items</p>
+                <h2 class="stat-card-value">218</h2>
+                <p class="stat-card-change negative">
+                  <i class="fas fa-arrow-down"></i> 7% from last month
+                </p>
+              </div>
+              <div class="stat-card-icon blue">
+                <i class="fas fa-cubes"></i>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <p class="stat-card-title">New Buyers</p>
+                <h2 class="stat-card-value">8</h2>
+                <p class="stat-card-change positive">
+                  <i class="fas fa-arrow-up"></i> 15% from last month
+                </p>
+              </div>
+              <div class="stat-card-icon purple">
+                <i class="fas fa-user-friends"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Activity and Market Trends -->
+          <div class="data-row">
+            <div class="data-card recent-activity">
+              <div class="data-card-header">
+                <h2>Recent Activity</h2>
+                <a href="#" class="view-all">View All</a>
+              </div>
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-icon green">
+                    <i class="fas fa-check-circle"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h3>Order #AGC-2571 Completed</h3>
+                    <p>
+                      Mbombela Fresh Market received 250kg of Valencia oranges
+                    </p>
+                    <span class="activity-time">2 hours ago</span>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon blue">
+                    <i class="fas fa-truck"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h3>Shipment En Route</h3>
+                    <p>
+                      120kg of Lemons on the way to Johannesburg Fresh Produce
+                    </p>
+                    <span class="activity-time">5 hours ago</span>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon orange">
+                    <i class="fas fa-shopping-cart"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h3>New Order Received</h3>
+                    <p>Fruit King has ordered 300kg of Navel oranges</p>
+                    <span class="activity-time">Yesterday</span>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon purple">
+                    <i class="fas fa-comment-alt"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h3>New Message</h3>
+                    <p>Thabo from Pretoria Market sent you a price inquiry</p>
+                    <span class="activity-time">Yesterday</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="data-card market-trends">
+              <div class="data-card-header">
+                <h2>Market Trends</h2>
+                <div class="time-filter">
+                  <button class="active">Week</button>
+                  <button>Month</button>
+                  <button>Year</button>
+                </div>
+              </div>
+              <div class="chart-container">
+                <div class="chart-placeholder">
+                  <div class="chart-bars">
+                    <div
+                      class="chart-bar"
+                      style="height: 60%"
+                      data-label="Oranges"
+                    ></div>
+                    <div
+                      class="chart-bar"
+                      style="height: 75%"
+                      data-label="Lemons"
+                    ></div>
+                    <div
+                      class="chart-bar"
+                      style="height: 45%"
+                      data-label="Limes"
+                    ></div>
+                    <div
+                      class="chart-bar"
+                      style="height: 90%"
+                      data-label="Grapefruit"
+                    ></div>
+                    <div
+                      class="chart-bar"
+                      style="height: 65%"
+                      data-label="Mandarins"
+                    ></div>
+                  </div>
+                  <div class="chart-labels">
+                    <span>Oranges</span>
+                    <span>Lemons</span>
+                    <span>Limes</span>
+                    <span>Grapefruit</span>
+                    <span>Mandarins</span>
+                  </div>
+                </div>
+                <div class="chart-legend">
+                  <div class="legend-item">
+                    <span class="legend-color green"></span>
+                    <span>Your Price</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-color grey"></span>
+                    <span>Market Average</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inventory and Top Buyers -->
+          <div class="data-row">
+            <div class="data-card inventory-status">
+              <div class="data-card-header">
+                <h2>Inventory Status</h2>
+                <a href="#" class="view-all">Manage Inventory</a>
+              </div>
+              <table class="inventory-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Stock</th>
+                    <th>Price/kg</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="product-cell">
+                      <div class="produce-image">
+                        <div
+                          style="
+                            width: 100%;
+                            height: 100%;
+                            background-color: #f5f5f5;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #4caf50;
+                          "
+                        >
+                          <i class="fas fa-lemon fa-3x"></i>
+                        </div>
+                      </div>
+                      <span>Valencia Oranges</span>
+                    </td>
+                    <td>
+                      <div class="stock-bar">
+                        <div class="stock-progress" style="width: 65%"></div>
+                      </div>
+                      <span>650kg left</span>
+                    </td>
+                    <td>R12.50</td>
+                    <td>
+                      <span class="status-badge available">Available</span>
+                    </td>
+                    <td>
+                      <div class="action-buttons">
+                        <button class="action-btn edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn view">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="product-cell">
+                      <div class="produce-image">
+                        <div
+                          style="
+                            width: 100%;
+                            height: 100%;
+                            background-color: #f5f5f5;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #4caf50;
+                          "
+                        >
+                          <i class="fas fa-lemon fa-3x"></i>
+                        </div>
+                      </div>
+                      <span>Eureka Lemons</span>
+                    </td>
+                    <td>
+                      <div class="stock-bar">
+                        <div class="stock-progress" style="width: 28%"></div>
+                      </div>
+                      <span>280kg left</span>
+                    </td>
+                    <td>R14.75</td>
+                    <td><span class="status-badge low">Low Stock</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button class="action-btn edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn view">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="product-cell">
+                      <div class="produce-image">
+                        <div
+                          style="
+                            width: 100%;
+                            height: 100%;
+                            background-color: #f5f5f5;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #4caf50;
+                          "
+                        >
+                          <i class="fas fa-lemon fa-3x"></i>
+                        </div>
+                      </div>
+                      <span>Ruby Grapefruit</span>
+                    </td>
+                    <td>
+                      <div class="stock-bar">
+                        <div class="stock-progress" style="width: 92%"></div>
+                      </div>
+                      <span>920kg left</span>
+                    </td>
+                    <td>R11.25</td>
+                    <td>
+                      <span class="status-badge available">Available</span>
+                    </td>
+                    <td>
+                      <div class="action-buttons">
+                        <button class="action-btn edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn view">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="product-cell">
+                      <div class="produce-image">
+                        <div
+                          style="
+                            width: 100%;
+                            height: 100%;
+                            background-color: #f5f5f5;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #4caf50;
+                          "
+                        >
+                          <i class="fas fa-lemon fa-3x"></i>
+                        </div>
+                      </div>
+                      <span>Clementine Mandarins</span>
+                    </td>
+                    <td>
+                      <div class="stock-bar">
+                        <div class="stock-progress" style="width: 5%"></div>
+                      </div>
+                      <span>50kg left</span>
+                    </td>
+                    <td>R16.80</td>
+                    <td><span class="status-badge critical">Critical</span></td>
+                    <td>
+                      <div class="action-buttons">
+                        <button class="action-btn edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn view">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="data-card top-buyers">
+              <div class="data-card-header">
+                <h2>Top Buyers</h2>
+                <a href="#" class="view-all">View All Buyers</a>
+              </div>
+              <div class="buyers-list">
+                <div class="buyer-item">
+                  <div class="buyer-info">
+                    <div
+                      style="
+                        width: 44px;
+                        height: 44px;
+                        background-color: #e0e0e0;
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #666;
+                      "
+                    >
+                      <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Mbombela Fresh Market</h3>
+                    <p>Wholesale Buyer</p>
+                  </div>
+                  <div class="buyer-stats">
+                    <div class="buyer-total">
+                      <span class="amount">R8,250</span>
+                      <span class="label">Total</span>
+                    </div>
+                    <button class="contact-btn">
+                      <i class="fas fa-comment"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="buyer-item">
+                  <div class="buyer-info">
+                    <div
+                      style="
+                        width: 44px;
+                        height: 44px;
+                        background-color: #e0e0e0;
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #666;
+                      "
+                    >
+                      <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Fruit King</h3>
+                    <p>Export Buyer</p>
+                  </div>
+                  <div class="buyer-stats">
+                    <div class="buyer-total">
+                      <span class="amount">R6,120</span>
+                      <span class="label">Total</span>
+                    </div>
+                    <button class="contact-btn">
+                      <i class="fas fa-comment"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="buyer-item">
+                  <div class="buyer-info">
+                    <div
+                      style="
+                        width: 44px;
+                        height: 44px;
+                        background-color: #e0e0e0;
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #666;
+                      "
+                    >
+                      <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Johannesburg Fresh Produce</h3>
+                    <p>Retail Buyer</p>
+                  </div>
+                  <div class="buyer-stats">
+                    <div class="buyer-total">
+                      <span class="amount">R 32,800</span>
+                      <span class="label">Total Orders</span>
+                    </div>
+                    <button class="contact-btn">
+                      <i class="fas fa-comment"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="back-to-portfolio">
+      <a href="/" class="back-btn"
+        ><i class="fas fa-arrow-left"></i> Back to Portfolio</a
+      >
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

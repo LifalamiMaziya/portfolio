@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import BlobBackground from "../components/BlobBackground";
@@ -25,23 +24,24 @@ const projects = [
       
       This project has contributed to a 30% increase in online bookings for local tourism businesses since its launch.
     `,
-    image: "/lovable-uploads/299dacbe-b255-4d0c-bb44-28f67d37df70.png",
+    image: "/assets/images/projects/mpumalanga-tourism.png",
     additionalImages: [
-      "/lovable-uploads/299dacbe-b255-4d0c-bb44-28f67d37df70.png"
+      "/assets/images/projects/mpumalanga-tourism-detail1.png",
+      "/assets/images/projects/mpumalanga-tourism-detail2.png"
     ],
     technologies: ["React", "Node.js", "MongoDB", "Mapbox API"],
     challenges: "Integrating multiple booking systems from different service providers presented significant challenges. We solved this by creating a standardized API adapter pattern.",
     results: "Increased tourism bookings by 30% within the first 6 months after launch. Improved user engagement with average session duration increasing from 2 to 5 minutes.",
-    demoLink: "https://example.com/mpumalanga-demo",
-    codeLink: "https://github.com/maziya/mpumalanga-tourism",
+    demoLink: "/projects/mpumalanga-tourism/index.html",
+    codeLink: "https://github.com/LifalamiMaziya/mpumalanga-tourism",
     year: "2023",
     client: "Mpumalanga Tourism Board"
   },
   {
     id: 2,
-    slug: "agriconnect",
+    slug: "agri-connect",
     title: "AgriConnect Platform",
-    description: "A digital marketplace connecting farmers with buyers, featuring inventory management, real-time market prices, and logistics tracking.",
+    description: "A digital marketplace connecting farmers with buyers in Mpumalanga, featuring inventory management, real-time market prices, and logistics tracking.",
     fullDescription: `
       AgriConnect is a digital marketplace that bridges the gap between small-scale farmers and buyers across South Africa.
       
@@ -55,47 +55,51 @@ const projects = [
       The application uses Vue.js for the frontend, providing a responsive and intuitive user interface accessible from both desktop and mobile devices.
       Express and PostgreSQL power the backend, ensuring reliable data management for transactions and user accounts.
     `,
-    image: "/lovable-uploads/41274f22-c22c-466c-942d-d9f7e3395c02.png",
+    image: "/assets/images/projects/agri-connect.png",
     additionalImages: [
-      "/lovable-uploads/41274f22-c22c-466c-942d-d9f7e3395c02.png"
+      "/assets/images/projects/agri-connect-detail1.png",
+      "/assets/images/projects/agri-connect-detail2.png"
     ],
     technologies: ["Vue.js", "Express", "PostgreSQL", "Chart.js"],
     challenges: "Building trust between farmers and buyers was crucial. We implemented a comprehensive review and verification system to address this challenge.",
     results: "Connected over 500 small-scale farmers to new markets. Increased average farmer income by 25% through better pricing and reduced dependency on intermediaries.",
-    demoLink: "https://example.com/agriconnect-demo",
-    codeLink: "https://github.com/maziya/agriconnect",
+    demoLink: "/projects/agri-connect/index.html",
+    codeLink: "https://github.com/LifalamiMaziya/agri-connect",
     year: "2022",
     client: "Department of Agriculture"
   },
   {
     id: 3,
-    slug: "ndebele-medical",
-    title: "Ndebele Medical Center",
-    description: "A comprehensive healthcare management system for a medical facility, featuring appointment scheduling, patient records, and telehealth capabilities.",
+    slug: "nelspruit-medical",
+    title: "Nelspruit Medical Center",
+    description: "A comprehensive healthcare management system for a local medical facility, featuring appointment scheduling, patient records, and telehealth capabilities.",
     fullDescription: `
-      The Ndebele Medical Center application was developed for a growing healthcare facility in Limpopo, South Africa.
+      The Nelspruit Medical Center platform was developed to modernize healthcare delivery for a leading medical facility in Nelspruit, Mpumalanga.
       
-      This comprehensive healthcare management system modernized the facility's operations, transitioning from paper-based to digital record-keeping.
+      Before implementation, the facility relied on paper-based records and manual appointment scheduling, leading to inefficiencies and occasional errors.
       
-      Key features include a patient portal for appointment scheduling, secure electronic medical records, automated billing integration with medical aid providers, and telehealth capabilities for remote consultations.
+      Our solution introduced a comprehensive digital healthcare management system featuring secure patient records, an intuitive appointment scheduling interface, and integrated telehealth capabilities.
       
-      The application is built using React for a responsive and accessible frontend, with Firebase providing real-time database capabilities, authentication, and secure storage for patient records.
+      The patient portal allows for secure access to medical histories, test results, and prescription information. The scheduling system intelligently manages doctor availability and patient preferences.
       
-      Stripe API integration handles payment processing for self-paying patients, while WebRTC powers the telehealth consultation features.
+      The telehealth module, particularly valuable during the COVID-19 pandemic, enables secure video consultations with end-to-end encryption.
       
-      The system was designed with POPIA (Protection of Personal Information Act) compliance as a priority, implementing end-to-end encryption for sensitive patient data.
+      Built with React and Firebase, the application ensures real-time data synchronization and responsive design across all devices.
+      
+      Stripe integration enables secure payment processing for consultations and services, with support for medical aid claims through integrated APIs.
     `,
-    image: "/lovable-uploads/aabeb587-a95a-4a26-bef2-25ad93622b5c.png",
+    image: "/assets/images/projects/nelspruit-medical.png",
     additionalImages: [
-      "/lovable-uploads/aabeb587-a95a-4a26-bef2-25ad93622b5c.png"
+      "/assets/images/projects/nelspruit-medical-detail1.png",
+      "/assets/images/projects/nelspruit-medical-detail2.png"
     ],
     technologies: ["React", "Firebase", "Tailwind CSS", "Stripe API"],
-    challenges: "Ensuring the security and privacy of patient data while maintaining high system performance and accessibility.",
-    results: "Reduced administrative workload by 40%, decreased appointment no-shows by 60% through automated reminders, and enabled rural patients to access specialist consultations remotely.",
-    demoLink: "https://example.com/ndebele-demo",
-    codeLink: "https://github.com/maziya/ndebele-medical",
+    challenges: "Ensuring patient data security and compliance with POPIA (Protection of Personal Information Act) regulations was paramount. We implemented comprehensive encryption and access controls.",
+    results: "Reduced administrative workload by 40% and decreased appointment no-shows by 60% through automated reminders. Patient satisfaction scores increased from 75% to 92%.",
+    demoLink: "/projects/nelspruit-medical/index.html",
+    codeLink: "https://github.com/LifalamiMaziya/nelspruit-medical",
     year: "2023",
-    client: "Ndebele Healthcare Group"
+    client: "Nelspruit Medical Center"
   }
 ];
 
@@ -202,9 +206,9 @@ const ProjectDetail = () => {
                 </a>
               </Button>
               <Button variant="outline" asChild>
-                <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                <Link to={`/source-code/${project.slug}`} className="inline-flex items-center gap-2">
                   <Github size={16} /> View Source Code
-                </a>
+                </Link>
               </Button>
             </div>
           </div>
@@ -225,7 +229,7 @@ const ProjectDetail = () => {
                   <p className="text-sm text-foreground/70">Category</p>
                   <p className="font-medium">{
                     project.slug === "mpumalanga-tourism" ? "Tourism & Travel" :
-                    project.slug === "agriconnect" ? "Agriculture & E-commerce" :
+                    project.slug === "agri-connect" ? "Agriculture & E-commerce" :
                     "Healthcare & Technology"
                   }</p>
                 </div>

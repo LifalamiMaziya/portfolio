@@ -1,69 +1,79 @@
-# Welcome to your Lovable project
+# Lifalami Maziya - Web Developer Portfolio
 
-## Project info
+A modern, responsive portfolio website showcasing my web development projects and skills.
 
-**URL**: https://lovable.dev/projects/bf96b68a-2cb4-48ea-862a-d4f20d51a447
+## Project Overview
 
-## How can I edit this code?
+This portfolio website features:
 
-There are several ways of editing your application.
+- Modern React-based UI with TypeScript
+- Responsive design using Tailwind CSS
+- Dark/light mode theming
+- Interactive project showcases
+- Contact form for potential clients
 
-**Use Lovable**
+## Technologies Used
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bf96b68a-2cb4-48ea-862a-d4f20d51a447) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
+This project is built with:
 
 - Vite
 - TypeScript
 - React
-- shadcn-ui
+- React Router
 - Tailwind CSS
+- shadcn/ui components
 
-## How can I deploy this project?
+## Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/bf96b68a-2cb4-48ea-862a-d4f20d51a447) and click on Share -> Publish.
+- `/src/components` - Reusable UI components
+- `/src/pages` - Page components for routing
+- `/src/assets` - Static assets including images
+- `/public/projects` - Demo projects that can be viewed within the portfolio
 
-## I want to use a custom domain - is that possible?
+## Featured Projects
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+1. **Mpumalanga Tourism Portal** - A comprehensive tourism platform showcasing Mpumalanga's natural wonders and attractions
+2. **AgriConnect Platform** - Digital marketplace connecting farmers with buyers in Mpumalanga
+3. **Nelspruit Medical Center** - Healthcare management system for a local medical facility
+
+## Local Development
+
+The only requirement is having Node.js & npm installed.
+
+```sh
+# Step 1: Clone the repository
+git clone https://github.com/LifalamiMaziya/web-portfolio.git
+
+# Step 2: Navigate to the project directory
+cd web-portfolio
+
+# Step 3: Install dependencies
+npm install
+
+# Step 4: Start the development server
+npm run dev
+```
+
+## Deployment
+
+This project is deployed using GitHub Pages. To deploy:
+
+```sh
+# Build the project
+npm run build
+
+# Deploy to GitHub Pages
+npm run deploy
+```
+
+## Contact
+
+For inquiries or collaboration opportunities:
+
+- Email: lifalamimaziya@gmail.com
+- Phone: +27 79 769 6106
+- Location: Nelspruit, Mpumalanga, South Africa
+
+## License
+
+This project is available for viewing and inspiration. Please contact me before using any code or design elements for commercial purposes.
